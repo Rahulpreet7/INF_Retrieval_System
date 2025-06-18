@@ -24,7 +24,11 @@ def main():
     if "chatHistory" not in st.session_state:
         st.session_state.chatHistory = None
     if user_question:
-        user_input(user_question)
+        if st.session_state.conversation is not None:
+            user_input(user_question)
+        else:
+            st.warning("Please upload and process the PDF files first.")
+
 
     with st.sidebar:
         st.title("Menu:")
